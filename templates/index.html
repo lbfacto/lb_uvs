@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Calcutateur de distance entre ville du Senegal</title>
+  <meta charset="utf-8">
+
+  <link href="Content/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://font.gstatic.com">
+  <script src="https://Kit.fontawesome.com/ab2155eb.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <!---fichier css-->
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>Trouver la distance la plus courte sur le map </h1>
+    <p>Cette application vous aides a trouver votre chemin et la plus courte distance pour vos voyage au senegal.</p>
+    <P>projet Algorithme de dijkstra et graphe presenter par Abdoulaye M2 Big Data UVS/Proposition chemin le plus court en les villes et l'heure du trajet en voyage,et nombre de kilometres entre deux villes. Entres votre ville source sur Star
+      et votre ville de destination sur End</p>
+  </div>
+  <div id="map"></div>
+
+
+<!--fichier js-->
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js">
+  </script>
+  <script src="{{ url_for('static', filename='js/index.js') }}" /></script>
+  <script>
+
+    {% for marker in markers %}
+      L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
+      .bindPopup("{{ marker['popup'] }}")
+      .openPopup();
+    {% endfor %}
+
+  </script>
+</body>
+
+</html>
